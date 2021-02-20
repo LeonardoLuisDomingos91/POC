@@ -1,6 +1,7 @@
 package br.com.domingos.apirestfull.domain.mapper;
 
 import br.com.domingos.apirestfull.domain.entity.EmployeeEntity;
+import br.com.domingos.apirestfull.domain.enumeration.EmployeeStatus;
 import br.com.domingos.apirestfull.domain.request.EmployeeRequest;
 import br.com.domingos.apirestfull.domain.request.EmployeeUpdateRequest;
 import br.com.domingos.apirestfull.domain.response.EmployeeResponse;
@@ -17,6 +18,7 @@ public class EmployeeMapper {
         employeeEntity.setLastName(employeeRequest.getLastName());
         employeeEntity.setCelPhone(employeeRequest.getCelPhone());
         employeeEntity.setEmail(employeeRequest.getEmail());
+        employeeEntity.setEmployeeStatus(EmployeeStatus.EFFECTED);
 
         return employeeEntity;
     }

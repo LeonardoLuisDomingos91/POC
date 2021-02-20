@@ -42,4 +42,10 @@ public class EmployeeController {
         return employeeService.update(employeeUpdateRequest, id);
     }
 
+    @PatchMapping(value = "/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void dismissed(@PathVariable("id") final Long id) {
+        employeeService.dismissedById(id);
+    }
+
 }

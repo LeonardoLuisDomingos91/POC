@@ -1,6 +1,7 @@
 package br.com.domingos.apirestfull.service;
 
 import br.com.domingos.apirestfull.domain.entity.EmployeeEntity;
+import br.com.domingos.apirestfull.domain.enumeration.EmployeeStatus;
 import br.com.domingos.apirestfull.domain.mapper.EmployeeMapper;
 import br.com.domingos.apirestfull.domain.request.EmployeeRequest;
 import br.com.domingos.apirestfull.domain.request.EmployeeUpdateRequest;
@@ -48,5 +49,14 @@ public class EmployeeService {
         employeeRepository.save(employeeEntityUpdate);
 
         return employeeMapper.fromEmployeeEntityToEmployeeResponse(employeeEntity);
+    }
+
+    public void dismissedById(final Long id) {
+        final EmployeeEntity employeeEntity = employeeRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("No record found for this ID"));
+
+        employeeEntity.setEmployeeStatus(EmployeeStatus.DISMISSED);
+
+        employeeRepository.save(employeeEntity);
     }
 }
